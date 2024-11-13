@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>App.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+.s4 { color: #7a7e85;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+App.java</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">factory</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">products</span><span class="s2">.*;</span>
+
+<span class="s0">public class </span><span class="s1">App </span><span class="s2">{</span>
+    <span class="s0">private static </span><span class="s1">GUIFactory getFactory</span><span class="s2">() {</span>
+
+        <span class="s1">String osName </span><span class="s2">= </span><span class="s1">System</span><span class="s2">.</span><span class="s1">getProperty</span><span class="s2">(</span><span class="s3">&quot;os.name&quot;</span><span class="s2">).</span><span class="s1">toLowerCase</span><span class="s2">();</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">osName</span><span class="s2">.</span><span class="s1">contains</span><span class="s2">(</span><span class="s3">&quot;win&quot;</span><span class="s2">)) {</span>
+            <span class="s0">return new </span><span class="s1">WindowsFactory</span><span class="s2">();</span>
+        <span class="s2">} </span><span class="s0">else if </span><span class="s2">(</span><span class="s1">osName</span><span class="s2">.</span><span class="s1">contains</span><span class="s2">(</span><span class="s3">&quot;nix&quot;</span><span class="s2">) || </span><span class="s1">osName</span><span class="s2">.</span><span class="s1">contains</span><span class="s2">(</span><span class="s3">&quot;nux&quot;</span><span class="s2">) || </span><span class="s1">osName</span><span class="s2">.</span><span class="s1">contains</span><span class="s2">(</span><span class="s3">&quot;linux&quot;</span><span class="s2">)) {</span>
+            <span class="s0">return new </span><span class="s1">LinuxFactory</span><span class="s2">();</span>
+        <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+            <span class="s0">return null</span><span class="s2">;</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public static void </span><span class="s1">main</span><span class="s2">(</span><span class="s1">String</span><span class="s2">[] </span><span class="s1">args</span><span class="s2">) {</span>
+        <span class="s1">GUIFactory factory </span><span class="s2">= </span><span class="s1">getFactory</span><span class="s2">();</span>
+
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">factory </span><span class="s2">== </span><span class="s0">null</span><span class="s2">) {</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;Unsupported OS&quot;</span><span class="s2">);</span>
+            <span class="s0">return</span><span class="s2">;</span>
+        <span class="s2">}</span>
+
+        <span class="s1">Button button </span><span class="s2">= </span><span class="s1">factory</span><span class="s2">.</span><span class="s1">createButton</span><span class="s2">();</span>
+        <span class="s1">Dialog dialog </span><span class="s2">= </span><span class="s1">factory</span><span class="s2">.</span><span class="s1">createDialog</span><span class="s2">();</span>
+        <span class="s1">NotificationCenter notificationCenter </span><span class="s2">= </span><span class="s1">factory</span><span class="s2">.</span><span class="s1">createNotificationCenter</span><span class="s2">();</span>
+
+        <span class="s4">// Renderizar los elementos</span>
+        <span class="s1">button</span><span class="s2">.</span><span class="s1">render</span><span class="s2">();</span>
+        <span class="s1">dialog</span><span class="s2">.</span><span class="s1">render</span><span class="s2">();</span>
+        <span class="s1">notificationCenter</span><span class="s2">.</span><span class="s1">notifyUser</span><span class="s2">(</span><span class="s3">&quot;This is a Linux notification!&quot;</span><span class="s2">);</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+</pre>
+</body>
+</html>
